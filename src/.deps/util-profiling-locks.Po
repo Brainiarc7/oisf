@@ -1,0 +1,3 @@
+util-profiling-locks.o: util-profiling-locks.c /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:
