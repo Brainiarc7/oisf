@@ -946,7 +946,8 @@ suricata_LDADD = $(HTP_LDADD)
 @BUILD_CUDA_TRUE@.ptx_sm_20 \
 @BUILD_CUDA_TRUE@.ptx_sm_21 \
 @BUILD_CUDA_TRUE@.ptx_sm_30 \
-@BUILD_CUDA_TRUE@.ptx_sm_35
+@BUILD_CUDA_TRUE@.ptx_sm_35 \
+@BUILD_CUDA_TRUE@.ptx_sm_50
 
 @BUILD_CUDA_TRUE@PTXS = $(suricata_CUDA_KERNELS:.cu=.ptx_sm_11) \
 @BUILD_CUDA_TRUE@	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_12) \
@@ -954,7 +955,8 @@ suricata_LDADD = $(HTP_LDADD)
 @BUILD_CUDA_TRUE@	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_20) \
 @BUILD_CUDA_TRUE@	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_21) \
 @BUILD_CUDA_TRUE@	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_30) \
-@BUILD_CUDA_TRUE@	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_35)
+@BUILD_CUDA_TRUE@	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_35) \
+@BUILD_CUDA_TRUE@	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_50)
 @BUILD_CUDA_TRUE@CLEANFILES = $(PTXS) cuda-ptxdump.h
 
 #suricata_CFLAGS = -Wall -fno-strict-aliasing 
@@ -963,7 +965,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .ptx_sm_11 .ptx_sm_12 .ptx_sm_13 .ptx_sm_20 .ptx_sm_21 .ptx_sm_30 .ptx_sm_35 .c .cu .lo .o .obj
+.SUFFIXES: .ptx_sm_11 .ptx_sm_12 .ptx_sm_13 .ptx_sm_20 .ptx_sm_21 .ptx_sm_30 .ptx_sm_35 .ptx_sm_50 .c .cu .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
