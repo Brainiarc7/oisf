@@ -409,35 +409,22 @@ util-mpm-ac-cuda-kernel.cu
 NVCCFLAGS=-O2
 
 SUFFIXES = \
-.ptx_sm_11 \
-.ptx_sm_12 \
-.ptx_sm_13 \
+
 .ptx_sm_20 \
 .ptx_sm_21 \
 .ptx_sm_30 \
 .ptx_sm_35 \
-.ptx_sm_50
+.ptx_sm_50 \
+.ptx_sm_52
 
-
-PTXS  = $(suricata_CUDA_KERNELS:.cu=.ptx_sm_11)
-PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_12)
-PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_13)
-PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_20)
+PTXS  = $(suricata_CUDA_KERNELS:.cu=.ptx_sm_20)
 PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_21)
 PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_30)
 PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_35)
 PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_50)
+PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_52)
 
 
-
-.cu.ptx_sm_11:
-	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_11 -ptx $<
-
-.cu.ptx_sm_12:
-	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_12 -ptx $<
-
-.cu.ptx_sm_13:
-	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_13 -ptx $<
 
 .cu.ptx_sm_20:
 	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_20 -ptx $<
@@ -453,6 +440,10 @@ PTXS += $(suricata_CUDA_KERNELS:.cu=.ptx_sm_50)
 
 .cu.ptx_sm_50:
 	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_50 -ptx $<
+
+.cu.ptx_sm_52:
+	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_52 -ptx $<	
+	
 
 
 cuda-ptxdump.h: $(PTXS)
