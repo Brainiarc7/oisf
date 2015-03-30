@@ -940,23 +940,19 @@ util-mpm-ac-cuda-kernel.cu
 
 NVCCFLAGS = -O2
 SUFFIXES = \
-.ptx_sm_11 \
-.ptx_sm_12 \
-.ptx_sm_13 \
 .ptx_sm_20 \
 .ptx_sm_21 \
 .ptx_sm_30 \
 .ptx_sm_35 \
-.ptx_sm_50
+.ptx_sm_50 \
+.ptx_sm_52
 
-PTXS = $(suricata_CUDA_KERNELS:.cu=.ptx_sm_11) \
-	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_12) \
-	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_13) \
-	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_20) \
+PTXS = $(suricata_CUDA_KERNELS:.cu=.ptx_sm_20) \
 	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_21) \
 	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_30) \
 	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_35) \
-	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_50)
+	$(suricata_CUDA_KERNELS:.cu=.ptx_sm_50) \
+	$(suricata CUDA_KERNELS:.cu=.ptx_sm_52)
 CLEANFILES = $(PTXS) cuda-ptxdump.h
 
 #suricata_CFLAGS = -Wall -fno-strict-aliasing 
@@ -965,7 +961,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .ptx_sm_11 .ptx_sm_12 .ptx_sm_13 .ptx_sm_20 .ptx_sm_21 .ptx_sm_30 .ptx_sm_35 .ptx_sm_50 .c .cu .lo .o .obj
+.SUFFIXES: .ptx_sm_20 .ptx_sm_21 .ptx_sm_30 .ptx_sm_35 .ptx_sm_50 .ptx_sm_52 .c .cu .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1672,15 +1668,6 @@ uninstall-am: uninstall-binPROGRAMS
 .PRECIOUS: Makefile
 
 
-.cu.ptx_sm_11:
-	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_11 -ptx $<
-
-.cu.ptx_sm_12:
-	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_12 -ptx $<
-
-.cu.ptx_sm_13:
-	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_13 -ptx $<
-
 .cu.ptx_sm_20:
 	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_20 -ptx $<
 
@@ -1692,6 +1679,12 @@ uninstall-am: uninstall-binPROGRAMS
 
 .cu.ptx_sm_35:
 	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_35 -ptx $<
+	
+.cu.ptx_sm_50:
+	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_50 -ptx $<
+	
+.cu.ptx_sm_52:
+	$(NVCC) $(NVCCFLAGS) -o $@ -arch=sm_52 -ptx $<	
 
 cuda-ptxdump.h: $(PTXS)
 	$(PYTHON) ptxdump.py cuda-ptxdump $(PTXS)
