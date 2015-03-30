@@ -409,7 +409,6 @@ util-mpm-ac-cuda-kernel.cu
 NVCCFLAGS=-O2
 
 SUFFIXES = \
-
 .ptx_sm_20 \
 .ptx_sm_21 \
 .ptx_sm_30 \
